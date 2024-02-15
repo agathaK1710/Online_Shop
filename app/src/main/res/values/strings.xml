@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Online Shop</string>
+    <string name="title_login">Login</string>
+    <string name="title_cart">Корзина</string>
+    <string name="title_main">Главная</string>
+    <string name="title_profile">Профиль</string>
+    <string name="title_sale">Акции</string>
+    <string name="title_catalog">Каталог</string>
+</resources>
