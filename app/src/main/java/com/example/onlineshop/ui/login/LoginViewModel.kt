@@ -6,8 +6,12 @@ import androidx.lifecycle.ViewModel
 
 class LoginViewModel : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+    private val _currentUser = MutableLiveData<Boolean>().apply {
+        value = false
     }
-    val text: LiveData<String> = _text
+    val currentUser: LiveData<Boolean> = _currentUser
+
+    fun login(){
+        _currentUser.value = true
+    }
 }
