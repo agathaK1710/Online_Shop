@@ -32,23 +32,8 @@ class NavigationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val appCompat = requireActivity() as AppCompatActivity
         val navHostFragment = childFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_main,
-                R.id.navigation_catalog,
-                R.id.navigation_cart,
-                R.id.navigation_sale,
-                R.id.navigation_profile
-            )
-        )
-        setupActionBarWithNavController(
-            appCompat,
-            navController,
-            appBarConfiguration
-        )
         binding.navView.setupWithNavController(navController)
     }
 

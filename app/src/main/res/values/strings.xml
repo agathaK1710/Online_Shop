@@ -11,7 +11,11 @@
     <string name="phone_number">Номер телефона</string>
     <string name="to_login">Войти</string>
     <string name="login">Вход</string>
-    <string name="loyalty_text">Нажимая кнопку “Войти”, Вы принимаете \n условия программы лояльности</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="loyalty_text">Нажимая кнопку “Войти”, Вы принимаете \n <u>условия программы лояльности</u></string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="mask_hint">XXXXXXXXXX</string>
+    <string name="simple_mask">##############</string>
+    <string name="mask">+7 ### ###-##-##</string>
+    <string name="code_and_mask">+7 XXX XXX-XX-XX</string>
+    <string name="main">Главная</string>
 </resources>
