@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+
     <style name="BottomNavigationViewStyle" parent="Widget.MaterialComponents.BottomNavigationView.Colored">
         <item name="android:background">@color/bottom_nav_colors</item>
         <item name="itemTextColor">@color/bottom_nav_colors</item>
@@ -17,5 +18,14 @@
         <item name="android:background">@drawable/rounded_8dp</item>
         <item name="android:padding">16dp</item>
         <item name="android:textColorHint">@color/middle_grey</item>
+    </style>
+
+    <style name="ImageButtonStyle" parent="@android:style/Widget.ImageButton">
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">17dp</item>
+        <item name="android:layout_marginVertical" tools:ignore="NewApi">10dp</item>
+        <item name="android:layout_marginEnd">19dp</item>
+        <item name="android:background">@drawable/x</item>
+        <item name="android:visibility">gone</item>
     </style>
 </resources>
