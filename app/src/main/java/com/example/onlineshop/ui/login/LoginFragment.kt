@@ -1,32 +1,44 @@
 package com.example.onlineshop.ui.login
 
 import android.annotation.SuppressLint
-import android.graphics.Color
+import android.content.Context
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageButton
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
 import com.example.onlineshop.R
 import com.example.onlineshop.databinding.FragmentLoginBinding
+import com.example.onlineshop.ui.OnlineShopApp
+import com.example.onlineshop.ui.ViewModelFactory
 import com.example.onlineshop.ui.nav.NavigationFragment
+import javax.inject.Inject
 
 
 class LoginFragment : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
+
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
     private val loginViewModel by lazy {
-        ViewModelProvider(this)[LoginViewModel::class.java]
+        ViewModelProvider(this, viewModelFactory)[LoginViewModel::class.java]
+    }
+
+    private val component by lazy {
+        (requireActivity().application as OnlineShopApp).component
+    }
+
+    override fun onAttach(context: Context) {
+        component.inject(this)
+        super.onAttach(context)
     }
     private val validName = MutableLiveData(false)
     private val validSurname = MutableLiveData(false)

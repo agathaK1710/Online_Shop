@@ -1,7 +1,7 @@
 package com.example.onlineshop.ui.sale
 
 import androidx.lifecycle.ViewModel
+import javax.inject.Inject
 
-class SaleViewModel : ViewModel() {
-    // TODO: Implement the ViewModel
+class SaleViewModel @Inject constructor() : ViewModel() {
 }

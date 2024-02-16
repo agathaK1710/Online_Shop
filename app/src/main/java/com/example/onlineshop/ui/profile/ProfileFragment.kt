@@ -1,32 +1,39 @@
 package com.example.onlineshop.ui.profile
 
-import androidx.lifecycle.ViewModelProvider
+import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.onlineshop.R
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import com.example.onlineshop.databinding.FragmentProfileBinding
+import com.example.onlineshop.ui.OnlineShopApp
+import com.example.onlineshop.ui.ViewModelFactory
+import javax.inject.Inject
 
 class ProfileFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = ProfileFragment()
+    private var _binding: FragmentProfileBinding? = null
+    private val binding get() = _binding!!
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+    private val profileViewModel by lazy {
+        ViewModelProvider(this, viewModelFactory)[ProfileViewModel::class.java]
     }
 
-    private lateinit var viewModel: ProfileViewModel
+    private val component by lazy {
+        (requireActivity().application as OnlineShopApp).component
+    }
 
+    override fun onAttach(context: Context) {
+        component.inject(this)
+        super.onAttach(context)
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+    ): View {
+        _binding = FragmentProfileBinding.inflate(inflater, container, false)
+        return binding.root
     }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ProfileViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
-
 }
