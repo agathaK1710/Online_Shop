@@ -1,18 +1,31 @@
 package com.example.onlineshop.ui.login
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.domain.entities.User
+import com.example.domain.useCases.GetUserCountUseCase
+import com.example.domain.useCases.InsertUserUseCase
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class LoginViewModel @Inject constructor() : ViewModel() {
+class LoginViewModel @Inject constructor(
+    private val insertUserUseCase: InsertUserUseCase,
+    private val getUserCountUseCase: GetUserCountUseCase
+) : ViewModel() {
 
-    private val _currentUser = MutableLiveData<Boolean>().apply {
-        value = false
+    private val _userInDb = MutableLiveData<Boolean>()
+    val userInDb: LiveData<Boolean> = _userInDb
+
+    init {
+        viewModelScope.launch {
+            _userInDb.value = getUserCountUseCase.invoke() != 0
+        }
     }
-    val currentUser: LiveData<Boolean> = _currentUser
 
-    fun login(){
-        _currentUser.value = true
+    fun login(user: User) = viewModelScope.launch {
+        insertUserUseCase(user)
     }
 }

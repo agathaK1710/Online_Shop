@@ -1,6 +1,7 @@
 package com.example.onlineshop
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.ViewModelProvider
@@ -10,6 +11,7 @@ import com.example.onlineshop.ui.ViewModelFactory
 import com.example.onlineshop.ui.login.LoginFragment
 import com.example.onlineshop.ui.login.LoginViewModel
 import javax.inject.Inject
+import kotlin.coroutines.coroutineContext
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         WindowCompat.getInsetsController(window, window.decorView).apply {
             isAppearanceLightStatusBars = true
         }
-        loginViewModel.currentUser.observe(this) { user ->
+        loginViewModel.userInDb.observe(this) { user ->
             if (!user) {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.fragment_container_main, LoginFragment())

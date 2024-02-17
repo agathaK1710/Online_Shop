@@ -12,6 +12,7 @@ import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModelProvider
+import com.example.domain.entities.User
 import com.example.onlineshop.R
 import com.example.onlineshop.databinding.FragmentLoginBinding
 import com.example.onlineshop.ui.OnlineShopApp
@@ -60,7 +61,6 @@ class LoginFragment : Fragment() {
         configValidation(binding.editTextName, binding.nameButton, validName)
         configValidation(binding.editTextSurname, binding.surnameButton, validSurname)
         configPhoneEditText()
-
         validName.observe(viewLifecycleOwner) { validName ->
             validSurname.observe(viewLifecycleOwner) { validSurname ->
                 validPhone.observe(viewLifecycleOwner) { validPhone ->
@@ -68,7 +68,10 @@ class LoginFragment : Fragment() {
                         binding.buttonLogin.isEnabled = true
                         binding.buttonLogin.setBackgroundResource(R.drawable.rounded_8dp_pink)
                         binding.buttonLogin.setOnClickListener {
-                            loginViewModel.login()
+                            val name = binding.editTextName.text.toString()
+                            val surname = binding.editTextSurname.text.toString()
+                            val phone = binding.editTextPhone.text.toString()
+                            loginViewModel.login(User(phone, name, surname))
                             activity?.supportFragmentManager?.beginTransaction()
                                 ?.replace(R.id.fragment_container_main, NavigationFragment())
                                 ?.commit()

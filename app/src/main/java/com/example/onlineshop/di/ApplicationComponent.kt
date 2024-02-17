@@ -15,7 +15,7 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(
-    modules = [ViewModelModule::class]
+    modules = [ViewModelModule::class, DataModule::class]
 )
 interface ApplicationComponent {
     fun inject(mainActivity: MainActivity)
