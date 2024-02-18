@@ -36,7 +36,44 @@ class CatalogFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-       _binding =  FragmentCatalogBinding.inflate(inflater, container, false)
+        _binding = FragmentCatalogBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val tags = arrayListOf<Tag>()
+        with(binding) {
+            tags.add(Tag(btnTagWatchAll, tagWatchAll, layoutTagWatchAll, BtnState.CLICKED))
+            tags.add(Tag(btnTagBody, tagBody, layoutTagBody))
+            tags.add(Tag(btnTagFace, tagFace, layoutTagFace))
+            tags.add(Tag(btnTagMask, tagMask, layoutTagMask))
+            tags.add(Tag(btnTagTan, tagTan, layoutTagTan))
+        }
+        tags.forEach { tag ->
+            refreshTag(tag)
+            tag.button.setOnClickListener {
+                tag.state = BtnState.UNCLICKED
+                refreshTag(tag)
+            }
+            tag.layout.setOnClickListener {
+                val clickedTag = tags.find {
+                    it.state == BtnState.CLICKED
+                }
+                if (clickedTag != null && clickedTag != tag) {
+                    clickedTag.state = BtnState.UNCLICKED
+                    tag.state = BtnState.CLICKED
+                    refreshTag(clickedTag)
+                    refreshTag(tag)
+                } else {
+                    tag.state = BtnState.CLICKED
+                    refreshTag(tag)
+                }
+            }
+        }
+    }
+
+    private fun refreshTag(tag: Tag) {
+        context?.let { tag.setAppearance(it) }
     }
 }

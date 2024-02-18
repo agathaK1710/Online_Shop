@@ -18,4 +18,12 @@
     <string name="mask">+7 ### ###-##-##</string>
     <string name="code_and_mask">+7 XXX XXX-XX-XX</string>
     <string name="main">Главная</string>
+    <string name="catalog">Каталог</string>
+    <string name="filters">Фильтры</string>
+    <string name="watch_all">Смотреть все</string>
+    <string name="face">Лицо</string>
+    <string name="body">Тело</string>
+    <string name="Tan">Загар</string>
+    <string name="face_mask">Маска</string>
+    <string name="close_tag_button">close tag button</string>
 </resources>
