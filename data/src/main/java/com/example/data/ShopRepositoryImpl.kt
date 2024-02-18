@@ -1,20 +1,30 @@
 package com.example.data
 
 import com.example.data.db.dao.UserDao
+import com.example.data.mapper.ProductMapper
 import com.example.data.mapper.UserMapper
+import com.example.data.network.ApiService
+import com.example.domain.entities.Product
+import com.example.domain.entities.ProductList
 import com.example.domain.entities.User
 import com.example.domain.repo.ShopRepository
 import javax.inject.Inject
 
 class ShopRepositoryImpl @Inject constructor(
-    private val mapper: UserMapper,
-    private val userDao: UserDao
+    private val userMapper: UserMapper,
+    private val productMapper: ProductMapper,
+    private val userDao: UserDao,
+    private val apiService: ApiService
 ) : ShopRepository {
     override suspend fun insertUser(user: User) {
-        userDao.insertUser(mapper.mapUserToUserEntity(user))
+        userDao.insertUser(userMapper.mapUserToUserEntity(user))
     }
 
     override suspend fun getUserCount(): Int {
         return userDao.getUserCount()
+    }
+
+    override suspend fun getProductList(): ProductList {
+        return productMapper.mapProductListDtoToProductList(apiService.getProducts())
     }
 }

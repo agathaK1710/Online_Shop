@@ -26,4 +26,10 @@
     <string name="Tan">Загар</string>
     <string name="face_mask">Маска</string>
     <string name="close_tag_button">close tag button</string>
+    <string name="sort_image_view">Sort image view</string>
+    <string-array name="sort_array">
+        <item>По популярности</item>
+        <item>По уменьшению цены</item>
+        <item>По возрастанию цены</item>
+    </string-array>
 </resources>

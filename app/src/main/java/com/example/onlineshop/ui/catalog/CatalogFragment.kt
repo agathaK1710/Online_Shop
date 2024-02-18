@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.onlineshop.R
 import com.example.onlineshop.databinding.FragmentCatalogBinding
 import com.example.onlineshop.ui.OnlineShopApp
 import com.example.onlineshop.ui.ViewModelFactory
@@ -49,6 +51,17 @@ class CatalogFragment : Fragment() {
             tags.add(Tag(btnTagFace, tagFace, layoutTagFace))
             tags.add(Tag(btnTagMask, tagMask, layoutTagMask))
             tags.add(Tag(btnTagTan, tagTan, layoutTagTan))
+
+            context?.let {
+                ArrayAdapter.createFromResource(
+                    it,
+                    R.array.sort_array,
+                    R.layout.spinner_item
+                ).also { adapter ->
+                    adapter.setDropDownViewResource(R.layout.spinner_item)
+                    spinner.adapter = adapter
+                }
+            }
         }
         tags.forEach { tag ->
             refreshTag(tag)

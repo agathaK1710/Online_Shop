@@ -1,7 +1,6 @@
 package com.example.onlineshop
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.ViewModelProvider
@@ -11,7 +10,6 @@ import com.example.onlineshop.ui.ViewModelFactory
 import com.example.onlineshop.ui.login.LoginFragment
 import com.example.onlineshop.ui.login.LoginViewModel
 import javax.inject.Inject
-import kotlin.coroutines.coroutineContext
 
 class MainActivity : AppCompatActivity() {
 

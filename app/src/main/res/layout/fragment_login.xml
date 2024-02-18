@@ -74,6 +74,7 @@
             android:inputType="phone"
             android:hint="@string/phone_number"
             app:mask="@string/simple_mask"
+            app:allowed_chars="0123456789"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             />

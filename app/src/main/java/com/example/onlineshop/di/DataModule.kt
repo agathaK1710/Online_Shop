@@ -4,6 +4,8 @@ import android.app.Application
 import com.example.data.ShopRepositoryImpl
 import com.example.data.db.AppDatabase
 import com.example.data.db.dao.UserDao
+import com.example.data.network.ApiFactory
+import com.example.data.network.ApiService
 import com.example.domain.repo.ShopRepository
 import dagger.Binds
 import dagger.Module
@@ -19,6 +21,11 @@ interface DataModule {
             application: Application
         ): UserDao {
             return AppDatabase.getInstance(application).getUserDao()
+        }
+
+        @Provides
+        fun provideApiService(): ApiService {
+            return ApiFactory.apiService
         }
     }
 }
