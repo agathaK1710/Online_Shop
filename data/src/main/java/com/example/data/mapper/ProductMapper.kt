@@ -16,9 +16,11 @@ class ProductMapper @Inject constructor() {
     fun mapProductListDtoToProductList(productListDto: ProductListDto) = ProductList(
         items = mapProductDtoListToProductList(productListDto.items)
     )
-    private fun mapProductDtoListToProductList(productDtoList: List<ProductDto>) = productDtoList.map {
-        mapProductDtoToProduct(it)
-    }
+
+    private fun mapProductDtoListToProductList(productDtoList: List<ProductDto>) =
+        productDtoList.map {
+            mapProductDtoToProduct(it)
+        }
 
     private fun mapProductDtoToProduct(productDto: ProductDto) = Product(
         id = productDto.id,
@@ -40,10 +42,12 @@ class ProductMapper @Inject constructor() {
         unit = priceDto.unit
     )
 
-    private fun mapFeedbackDtoToFeedback(feedbackDto: FeedbackDto) = Feedback(
-        count = feedbackDto.count,
-        rating = feedbackDto.rating
-    )
+    private fun mapFeedbackDtoToFeedback(feedbackDto: FeedbackDto?): Feedback? {
+        return if (feedbackDto != null) Feedback(
+            count = feedbackDto.count,
+            rating = feedbackDto.rating
+        ) else null
+    }
 
     private fun mapListInfoDtoToListInfo(infoDtoList: List<InfoDto>) = infoDtoList.map { infoDto ->
         Info(

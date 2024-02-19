@@ -135,7 +135,7 @@
                 <TextView
                     android:id="@+id/tag_tan"
                     style="@style/TagStyle"
-                    android:text="@string/Tan"
+                    android:text="@string/tan"
                     tools:ignore="MissingConstraints" />
 
                 <ImageButton
@@ -168,10 +168,11 @@
 
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="32dp"
-        android:layout_marginHorizontal="16dp"
+        android:layout_marginHorizontal="9dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         tools:listitem="@layout/product_card"

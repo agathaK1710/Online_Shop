@@ -5,14 +5,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.GridLayoutManager
 import com.example.onlineshop.R
 import com.example.onlineshop.databinding.FragmentCatalogBinding
 import com.example.onlineshop.ui.OnlineShopApp
 import com.example.onlineshop.ui.ViewModelFactory
+import com.example.onlineshop.ui.catalog.recyclerView.MainAdapter
 import javax.inject.Inject
+
 
 class CatalogFragment : Fragment() {
     private var _binding: FragmentCatalogBinding? = null
@@ -24,6 +29,7 @@ class CatalogFragment : Fragment() {
     private val catalogViewModel by lazy {
         ViewModelProvider(this, viewModelFactory)[CatalogViewModel::class.java]
     }
+    private lateinit var mainAdapter: MainAdapter
 
     private val component by lazy {
         (requireActivity().application as OnlineShopApp).component
@@ -33,24 +39,24 @@ class CatalogFragment : Fragment() {
         component.inject(this)
         super.onAttach(context)
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentCatalogBinding.inflate(inflater, container, false)
+        setupRvAdapter()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val tags = arrayListOf<Tag>()
+        val tags = arrayListOf<TagView>()
         with(binding) {
-            tags.add(Tag(btnTagWatchAll, tagWatchAll, layoutTagWatchAll, BtnState.CLICKED))
-            tags.add(Tag(btnTagBody, tagBody, layoutTagBody))
-            tags.add(Tag(btnTagFace, tagFace, layoutTagFace))
-            tags.add(Tag(btnTagMask, tagMask, layoutTagMask))
-            tags.add(Tag(btnTagTan, tagTan, layoutTagTan))
+            tags.add(TagView(btnTagWatchAll, tagWatchAll, layoutTagWatchAll, BtnState.CLICKED))
+            tags.add(TagView(btnTagBody, tagBody, layoutTagBody))
+            tags.add(TagView(btnTagFace, tagFace, layoutTagFace))
+            tags.add(TagView(btnTagMask, tagMask, layoutTagMask))
+            tags.add(TagView(btnTagTan, tagTan, layoutTagTan))
 
             context?.let {
                 ArrayAdapter.createFromResource(
@@ -58,35 +64,72 @@ class CatalogFragment : Fragment() {
                     R.array.sort_array,
                     R.layout.spinner_item
                 ).also { adapter ->
-                    adapter.setDropDownViewResource(R.layout.spinner_item)
+                    adapter.setDropDownViewResource(R.layout.spinner_dropdown)
                     spinner.adapter = adapter
                 }
             }
-        }
-        tags.forEach { tag ->
-            refreshTag(tag)
-            tag.button.setOnClickListener {
-                tag.state = BtnState.UNCLICKED
-                refreshTag(tag)
+            val criteriaArr = resources.getStringArray(R.array.sort_array)
+            spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    val criteria = SortCriteria.from(criteriaArr[position])
+                    criteria?.let {
+                        catalogViewModel.sortBy(it)
+                    }
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                }
+
             }
-            tag.layout.setOnClickListener {
+        }
+        tags.forEach { tagView ->
+            refreshTag(tagView)
+            tagView.button.setOnClickListener {
+                tagView.state = BtnState.UNCLICKED
+                refreshTag(tagView)
+                catalogViewModel.resetTag()
+            }
+            tagView.layout.setOnClickListener {
                 val clickedTag = tags.find {
                     it.state == BtnState.CLICKED
                 }
-                if (clickedTag != null && clickedTag != tag) {
+                if (clickedTag != null && clickedTag != tagView) {
                     clickedTag.state = BtnState.UNCLICKED
-                    tag.state = BtnState.CLICKED
+                    tagView.state = BtnState.CLICKED
                     refreshTag(clickedTag)
-                    refreshTag(tag)
+                    refreshTag(tagView)
                 } else {
-                    tag.state = BtnState.CLICKED
-                    refreshTag(tag)
+                    tagView.state = BtnState.CLICKED
+                    refreshTag(tagView)
                 }
+
+                val tag = Tag.from(tagView.text.text.toString(), requireContext())
+                if (tag != null) {
+                    catalogViewModel.filterList(tag)
+                }
+
             }
         }
     }
 
-    private fun refreshTag(tag: Tag) {
+    private fun refreshTag(tag: TagView) {
         context?.let { tag.setAppearance(it) }
+    }
+
+    private fun setupRvAdapter() {
+        mainAdapter = MainAdapter()
+        catalogViewModel.productsCardsList.observe(viewLifecycleOwner) {
+            mainAdapter.items = it
+            binding.recyclerView.apply {
+                adapter = mainAdapter
+                layoutManager = GridLayoutManager(requireContext(), 2)
+                itemAnimator = DefaultItemAnimator()
+            }
+        }
     }
 }

@@ -1,36 +1,19 @@
 package com.example.onlineshop.ui.catalog
 
 import android.content.Context
-import android.graphics.Color
-import android.view.View
-import android.widget.ImageButton
-import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.onlineshop.R
 
-data class Tag(
-    val button: ImageButton,
-    val text: TextView,
-    val layout: ConstraintLayout,
-    var state: BtnState = BtnState.UNCLICKED
+enum class Tag(
+    val tagNameRes: Int,
+    val tagName: String
 ) {
-    fun setAppearance(context: Context) {
-        when (state) {
-            BtnState.CLICKED -> {
-                layout.setBackgroundResource(R.drawable.tag_btn_dark_blur)
-                text.setTextColor(Color.WHITE)
-                button.visibility = View.VISIBLE
-            }
+    FACE(R.string.face, "face"), BODY(R.string.body, "body"),
+    SUNTAN(R.string.tan, "suntan"), MASK(R.string.face_mask, "mask"),
+    WATCH_ALL(R.string.watch_all, "");
 
-            BtnState.UNCLICKED -> {
-                layout.setBackgroundResource(R.drawable.tag_btn_light_grey)
-                text.setTextColor(context.resources.getColor(R.color.middle_grey, context.theme))
-                button.visibility = View.GONE
-            }
+    companion object {
+        fun from(name: String, context: Context): Tag? = entries.firstOrNull {
+            context.getString(it.tagNameRes) == name
         }
     }
-}
-
-enum class BtnState {
-    CLICKED, UNCLICKED
 }

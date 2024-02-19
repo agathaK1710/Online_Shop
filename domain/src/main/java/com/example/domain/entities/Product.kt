@@ -5,7 +5,7 @@ data class Product(
     val title: String,
     val subtitle: String,
     val price: Price,
-    val feedback: Feedback,
+    val feedback: Feedback? = null,
     val tags: List<String>,
     val available: Int,
     val description: String,
