@@ -33,5 +33,19 @@
         android:id="@+id/navigation_catalog"
         android:name="com.example.onlineshop.ui.catalog.CatalogFragment"
         android:label="@string/title_login"
-        tools:layout="@layout/fragment_catalog" />
+        tools:layout="@layout/fragment_catalog" >
+        <action
+            android:id="@+id/action_navigation_catalog_to_productPage"
+            app:destination="@id/productPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/productPage"
+        android:name="com.example.onlineshop.ui.product.ProductPageFragment"
+        android:label="fragment_product_page"
+        tools:layout="@layout/fragment_product_page" >
+        <argument
+            android:name="productCard"
+            app:argType="com.example.onlineshop.ui.catalog.recyclerView.ProductCard" />
+    </fragment>
+
 </navigation>

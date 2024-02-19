@@ -52,7 +52,7 @@ class CatalogViewModel @Inject constructor(
         when (criteria) {
             SortCriteria.RATING -> {
                 _productsCardsList.value = _productsCardsList.value?.sortedByDescending {
-                    it.feedback?.rating
+                    it.rating
                 }
             }
 

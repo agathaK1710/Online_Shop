@@ -34,8 +34,8 @@ class AdapterDelegate @Inject constructor(
                         title.text = item.title
                         subtitle.text = item.subtitle
                         rating.text = item.rating.toString()
-                        if (item.feedback != null) {
-                            numOfFeedbacs.text = "(${item.feedback?.count.toString()})"
+                        if (item.feedbackCount != null) {
+                            numOfFeedbacs.text = "(${item.feedbackCount.toString()})"
                         } else {
                             numOfFeedbacs.visibility = View.GONE
                             star.visibility = View.GONE
@@ -52,7 +52,7 @@ class AdapterDelegate @Inject constructor(
                                 onClickHeartListener?.invoke(item.id, true)
                             }
                         }
-                        itemCard.setOnClickListener {
+                        itemView.setOnClickListener {
                             onItemClickListener?.invoke(item.id)
                         }
                     }

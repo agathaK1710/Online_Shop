@@ -1,7 +1,9 @@
 package com.example.onlineshop.ui.catalog.recyclerView
 
-import com.example.domain.entities.Feedback
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 data class ProductCard(
     val id: String,
     val images: List<Int>,
@@ -12,7 +14,7 @@ data class ProductCard(
     val title: String,
     val subtitle: String,
     val rating: Double? = null,
-    val feedback: Feedback? = null,
+    val feedbackCount: Int? = null,
     val tags: List<String>,
     var isFavourite: Boolean
-): DisplayableItem
+): DisplayableItem, Parcelable

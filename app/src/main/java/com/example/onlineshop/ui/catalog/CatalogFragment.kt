@@ -10,6 +10,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.onlineshop.R
@@ -124,18 +125,29 @@ class CatalogFragment : Fragment() {
     }
 
     private fun setupRvAdapter() {
-        mainAdapter = MainAdapter(
-            onClickHeartListener = { id, toInsert ->
-                if (toInsert) {
-                    catalogViewModel.addToFavourites(id)
-                } else {
-                    catalogViewModel.deleteFavouriteProduct(id)
+        catalogViewModel.productsCardsList.observe(viewLifecycleOwner) { list ->
+            mainAdapter = MainAdapter(
+                onClickHeartListener = { id, toInsert ->
+                    if (toInsert) {
+                        catalogViewModel.addToFavourites(id)
+                    } else {
+                        catalogViewModel.deleteFavouriteProduct(id)
+                    }
+                },
+                onItemClickListener = { id ->
+                    val productCard = list.find { product ->
+                        product.id == id
+                    }
+                    if (productCard != null) {
+                        findNavController().navigate(
+                            CatalogFragmentDirections.actionNavigationCatalogToProductPage(
+                                productCard
+                            )
+                        )
+                    }
                 }
-            },
-            onItemClickListener = null
-        )
-        catalogViewModel.productsCardsList.observe(viewLifecycleOwner) {
-            mainAdapter.items = it
+            )
+            mainAdapter.items = list
             binding.recyclerView.apply {
                 adapter = mainAdapter
                 layoutManager = GridLayoutManager(requireContext(), 2)

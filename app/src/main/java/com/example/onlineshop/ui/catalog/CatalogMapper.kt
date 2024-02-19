@@ -16,7 +16,7 @@ class CatalogMapper @Inject constructor() {
             unit = product.price.unit,
             title = product.title,
             subtitle = product.subtitle,
-            feedback = product.feedback,
+            feedbackCount = product.feedback?.count,
             rating = product.feedback?.rating,
             images = getImagesList(product.id),
             tags = product.tags,

@@ -27,6 +27,9 @@
     <string name="face_mask">Маска</string>
     <string name="close_tag_button">close tag button</string>
     <string name="sort_image_view">Sort image view</string>
+    <string name="question_button">Question button</string>
+    <string name="button_back">Button back</string>
+    <string name="button_add_to_favourites">Button add to favourites</string>
     <string-array name="sort_array">
         <item>По популярности</item>
         <item>По уменьшению цены</item>
