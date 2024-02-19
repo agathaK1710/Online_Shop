@@ -2,6 +2,7 @@ package com.example.onlineshop.ui.catalog
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,6 +40,7 @@ class CatalogFragment : Fragment() {
         component.inject(this)
         super.onAttach(context)
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -122,7 +124,16 @@ class CatalogFragment : Fragment() {
     }
 
     private fun setupRvAdapter() {
-        mainAdapter = MainAdapter()
+        mainAdapter = MainAdapter(
+            onClickHeartListener = { id, toInsert ->
+                if (toInsert) {
+                    catalogViewModel.addToFavourites(id)
+                } else {
+                    catalogViewModel.deleteFavouriteProduct(id)
+                }
+            },
+            onItemClickListener = null
+        )
         catalogViewModel.productsCardsList.observe(viewLifecycleOwner) {
             mainAdapter.items = it
             binding.recyclerView.apply {

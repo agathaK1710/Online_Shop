@@ -1,10 +1,12 @@
 package com.example.data.mapper
 
+import com.example.data.db.entities.FavouriteEntity
 import com.example.data.network.models.FeedbackDto
 import com.example.data.network.models.InfoDto
 import com.example.data.network.models.PriceDto
 import com.example.data.network.models.ProductDto
 import com.example.data.network.models.ProductListDto
+import com.example.domain.entities.FavouriteProduct
 import com.example.domain.entities.Feedback
 import com.example.domain.entities.Info
 import com.example.domain.entities.Price
@@ -13,6 +15,11 @@ import com.example.domain.entities.ProductList
 import javax.inject.Inject
 
 class ProductMapper @Inject constructor() {
+
+    fun mapFavouriteProductToEntity(favouriteProduct: FavouriteProduct) = FavouriteEntity(
+        id = favouriteProduct.id
+    )
+
     fun mapProductListDtoToProductList(productListDto: ProductListDto) = ProductList(
         items = mapProductDtoListToProductList(productListDto.items)
     )
