@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.login.LoginFragment">
+
+    <TextView
+        android:id="@+id/loginTitle"
+        style="@style/TitleStyle"
+        android:text="@string/login"
+        tools:ignore="MissingConstraints" />
+
+    <RelativeLayout
+        android:id="@+id/nameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="193dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loginTitle">
+
+        <EditText
+            android:id="@+id/editTextName"
+            style="@style/EditTextStyle"
+            android:hint="@string/name"
+            android:inputType="text" />
+
+        <ImageButton
+            android:id="@+id/nameButton"
+            style="@style/ImageButtonStyle"
+            android:layout_alignTop="@+id/editTextName"
+            android:layout_alignEnd="@+id/editTextName"
+            android:layout_alignBottom="@+id/editTextName" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/surnameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nameLayout">
+
+        <EditText
+            android:id="@+id/editTextSurname"
+            style="@style/EditTextStyle"
+            android:hint="@string/surname"
+            android:inputType="text" />
+
+        <ImageButton
+            android:id="@+id/surnameButton"
+            style="@style/ImageButtonStyle"
+            android:layout_alignTop="@+id/editTextSurname"
+            android:layout_alignEnd="@+id/editTextSurname"
+            android:layout_alignBottom="@+id/editTextSurname"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/numLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/surnameLayout">
+
+
+        <br.com.sapereaude.maskedEditText.MaskedEditText
+            android:id="@+id/editTextPhone"
+            style="@style/EditTextStyle"
+            android:inputType="phone"
+            android:hint="@string/phone_number"
+            app:mask="@string/simple_mask"
+            app:allowed_chars="0123456789"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            />
+
+        <ImageButton
+            android:id="@+id/numButton"
+            style="@style/ImageButtonStyle"
+            android:layout_alignTop="@+id/editTextPhone"
+            android:layout_alignEnd="@+id/editTextPhone"
+            android:layout_alignBottom="@+id/editTextPhone" />
+    </RelativeLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/buttonLogin"
+        android:layout_width="match_parent"
+        android:layout_height="51dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/rounded_8dp_light_pink"
+        android:enabled="false"
+        android:fontFamily="@font/sf_pro_display"
+        android:text="@string/to_login"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/numLayout" />
+
+    <TextView
+        android:id="@+id/loyalty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:fontFamily="@font/sf_pro_display"
+        android:gravity="center_horizontal"
+        android:text="@string/loyalty_text"
+
+        android:textColor="@color/middle_grey"
+        android:textSize="11sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

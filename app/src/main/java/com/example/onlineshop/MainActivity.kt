@@ -1,37 +1,45 @@
 package com.example.onlineshop
 
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
+import androidx.core.view.WindowCompat
+import androidx.lifecycle.ViewModelProvider
 import com.example.onlineshop.databinding.ActivityMainBinding
+import com.example.onlineshop.ui.OnlineShopApp
+import com.example.onlineshop.ui.ViewModelFactory
+import com.example.onlineshop.ui.login.LoginFragment
+import com.example.onlineshop.ui.login.LoginViewModel
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val loginViewModel by lazy {
+        ViewModelProvider(this, viewModelFactory)[LoginViewModel::class.java]
+    }
+
+    private val component by lazy {
+        (application as OnlineShopApp).component
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        component.inject(this)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-        val navView: BottomNavigationView = binding.navView
-
-        val navController = findNavController(R.id.nav_host_fragment_activity_main)
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_main,
-                R.id.navigation_catalog,
-                R.id.navigation_cart,
-                R.id.navigation_sale,
-                R.id.navigation_profile
-            )
-        )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setupWithNavController(navController)
+        WindowCompat.getInsetsController(window, window.decorView).apply {
+            isAppearanceLightStatusBars = true
+        }
+        loginViewModel.userInDb.observe(this) { user ->
+            if (!user) {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container_main, LoginFragment())
+                    .commit()
+            }
+        }
     }
 }
