@@ -15,7 +15,7 @@ class ProductPageFragment : Fragment() {
     private var _binding: FragmentProductPageBinding? = null
     private val binding get() = _binding!!
 
-    lateinit var product: ProductCard
+    private lateinit var product: ProductCard
     private val navigationArgs : ProductPageFragmentArgs by navArgs()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

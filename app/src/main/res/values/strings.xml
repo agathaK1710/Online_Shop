@@ -30,6 +30,11 @@
     <string name="question_button">Question button</string>
     <string name="button_back">Button back</string>
     <string name="button_add_to_favourites">Button add to favourites</string>
+    <string name="hide">Скрыть</string>
+    <string name="characteristics">Характеристики</string>
+    <string name="composition">Состав</string>
+    <string name="add_to_cart">Добавить в корзину</string>
+    <string name="more">Подробнее</string>
     <string-array name="sort_array">
         <item>По популярности</item>
         <item>По уменьшению цены</item>
