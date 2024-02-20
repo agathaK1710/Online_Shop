@@ -21,7 +21,11 @@
         android:id="@+id/navigation_profile"
         android:name="com.example.onlineshop.ui.profile.ProfileFragment"
         android:label="@string/title_login"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_navigation_profile_to_favouritesFragment"
+            app:destination="@id/favouritesFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_sale"
@@ -46,6 +50,15 @@
         <argument
             android:name="productCard"
             app:argType="com.example.onlineshop.ui.catalog.recyclerView.ProductCard" />
+    </fragment>
+    <fragment
+        android:id="@+id/favouritesFragment"
+        android:name="com.example.onlineshop.ui.favourites.FavouritesFragment"
+        android:label="fragment_favourites"
+        tools:layout="@layout/fragment_favourites" >
+        <action
+            android:id="@+id/action_favouritesFragment_to_productPage"
+            app:destination="@id/productPage" />
     </fragment>
 
 </navigation>

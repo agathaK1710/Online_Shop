@@ -1,6 +1,5 @@
 package com.example.onlineshop.ui.catalog.recyclerView
 
-import android.app.Application
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View

@@ -2,7 +2,6 @@ package com.example.onlineshop.ui.catalog
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -54,6 +53,7 @@ class CatalogFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val tags = arrayListOf<TagView>()
+        catalogViewModel.refreshProducts()
         with(binding) {
             tags.add(TagView(btnTagWatchAll, tagWatchAll, layoutTagWatchAll, BtnState.CLICKED))
             tags.add(TagView(btnTagBody, tagBody, layoutTagBody))

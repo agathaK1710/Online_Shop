@@ -46,6 +46,10 @@
     <string name="offers">Оферта</string>
     <string name="purchase_return">Возврат товара</string>
     <string name="logout">Выйти</string>
+    <string name="products">Товары</string>
+    <string name="brands">Бренды</string>
+    <string name="cart">Корзина</string>
+    <string name="discount">Акции</string>
     <string-array name="sort_array">
         <item>По популярности</item>
         <item>По уменьшению цены</item>
