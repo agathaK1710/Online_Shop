@@ -13,7 +13,6 @@ import com.example.onlineshop.databinding.FragmentProfileBinding
 import com.example.onlineshop.ui.OnlineShopApp
 import com.example.onlineshop.ui.ViewModelFactory
 import com.example.onlineshop.ui.login.LoginFragment
-import com.example.onlineshop.ui.nav.NavigationFragment
 import com.example.onlineshop.ui.utils.Ending
 import javax.inject.Inject
 
@@ -51,7 +50,7 @@ class ProfileFragment : Fragment() {
             profileViewModel.currentUser.observe(viewLifecycleOwner){user ->
                 if (user != null) {
                     credentials.text = "${user.name} ${user.surname}"
-                    phone.setText(user.phoneNumber)
+                    phone.text = user.phoneNumber
                 }
             }
             profileViewModel.favCount.observe(viewLifecycleOwner){
@@ -67,6 +66,9 @@ class ProfileFragment : Fragment() {
                 activity?.supportFragmentManager?.beginTransaction()
                     ?.replace(R.id.fragment_container_main, LoginFragment())
                     ?.commit()
+            }
+            cardFavourites.setOnClickListener {
+                findNavController().navigate(R.id.action_navigation_profile_to_favouritesFragment)
             }
         }
     }

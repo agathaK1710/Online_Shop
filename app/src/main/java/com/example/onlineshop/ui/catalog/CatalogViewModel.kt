@@ -32,11 +32,15 @@ class CatalogViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            _productsList.value = getProductsUseCase()
-            _productsCardsList.value = getInitialList()
-            sortBy(SortCriteria.RATING)
-            _allProducts.value = getInitialList()
+            refreshProducts()
         }
+    }
+
+    fun refreshProducts() = viewModelScope.launch {
+        _productsList.value = getProductsUseCase()
+        _productsCardsList.value = getInitialList()
+        sortBy(SortCriteria.RATING)
+        _allProducts.value = getInitialList()
     }
 
     private suspend fun getInitialList() =

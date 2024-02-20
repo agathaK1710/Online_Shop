@@ -9,7 +9,6 @@ import com.example.onlineshop.databinding.ActivityMainBinding
 import com.example.onlineshop.ui.OnlineShopApp
 import com.example.onlineshop.ui.ViewModelFactory
 import com.example.onlineshop.ui.login.LoginFragment
-import com.example.onlineshop.ui.login.LoginViewModel
 import com.example.onlineshop.ui.nav.NavigationFragment
 import com.example.onlineshop.ui.profile.ProfileViewModel
 import javax.inject.Inject

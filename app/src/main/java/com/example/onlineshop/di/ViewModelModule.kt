@@ -2,10 +2,10 @@ package com.example.onlineshop.di
 
 import androidx.lifecycle.ViewModel
 import com.example.onlineshop.ui.cart.CartViewModel
+import com.example.onlineshop.ui.catalog.CatalogViewModel
+import com.example.onlineshop.ui.favourites.FavouritesViewModel
 import com.example.onlineshop.ui.login.LoginViewModel
 import com.example.onlineshop.ui.profile.ProfileViewModel
-import com.example.onlineshop.ui.sale.SaleViewModel
-import com.example.onlineshop.ui.catalog.CatalogViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -29,11 +29,11 @@ interface ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(SaleViewModel::class)
-    fun bindSaleViewModule(viewModel: SaleViewModel): ViewModel
+    @ViewModelKey(CatalogViewModel::class)
+    fun bindCatalogViewModule(viewModel: CatalogViewModel): ViewModel
 
     @Binds
     @IntoMap
-    @ViewModelKey(CatalogViewModel::class)
-    fun bindCatalogViewModule(viewModel: CatalogViewModel): ViewModel
+    @ViewModelKey(FavouritesViewModel::class)
+    fun bindFavouritesViewModule(viewModel: FavouritesViewModel): ViewModel
 }
