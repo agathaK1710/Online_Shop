@@ -1,6 +1,7 @@
 package com.example.onlineshop
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.lifecycle.ViewModelProvider
@@ -9,6 +10,8 @@ import com.example.onlineshop.ui.OnlineShopApp
 import com.example.onlineshop.ui.ViewModelFactory
 import com.example.onlineshop.ui.login.LoginFragment
 import com.example.onlineshop.ui.login.LoginViewModel
+import com.example.onlineshop.ui.nav.NavigationFragment
+import com.example.onlineshop.ui.profile.ProfileViewModel
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -18,8 +21,8 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    private val loginViewModel by lazy {
-        ViewModelProvider(this, viewModelFactory)[LoginViewModel::class.java]
+    private val profileViewModel by lazy {
+        ViewModelProvider(this, viewModelFactory)[ProfileViewModel::class.java]
     }
 
     private val component by lazy {
@@ -34,10 +37,15 @@ class MainActivity : AppCompatActivity() {
         WindowCompat.getInsetsController(window, window.decorView).apply {
             isAppearanceLightStatusBars = true
         }
-        loginViewModel.userInDb.observe(this) { user ->
-            if (!user) {
+        profileViewModel.currentUser.observe(this) { user ->
+            Log.d("CHANGEUSER", "$user")
+            if (user == null) {
                 supportFragmentManager.beginTransaction()
                     .replace(R.id.fragment_container_main, LoginFragment())
+                    .commit()
+            } else {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container_main, NavigationFragment())
                     .commit()
             }
         }

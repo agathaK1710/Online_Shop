@@ -1,15 +1,19 @@
 package com.example.onlineshop.ui.catalog
 
+import com.example.domain.entities.Info
 import com.example.domain.entities.Product
-import com.example.domain.entities.ProductList
 import com.example.onlineshop.R
 import com.example.onlineshop.ui.catalog.recyclerView.ProductCard
+import com.example.onlineshop.ui.product.ProductInfo
 import javax.inject.Inject
 
 class CatalogMapper @Inject constructor() {
     fun mapProductToProductCard(product: Product, isFavourite: Boolean) =
         ProductCard(
             id = product.id,
+            available = product.available,
+            description = product.description,
+            ingredients = product.ingredients,
             newPrice = product.price.priceWithDiscount,
             oldPrice = product.price.price,
             discount = product.price.discount,
@@ -20,8 +24,16 @@ class CatalogMapper @Inject constructor() {
             rating = product.feedback?.rating,
             images = getImagesList(product.id),
             tags = product.tags,
-            isFavourite = isFavourite
+            isFavourite = isFavourite,
+            info = mapInfoListToProductInfoList(product.info)
         )
+
+    private fun mapInfoListToProductInfoList(infoList: List<Info>) = infoList.map { info ->
+        ProductInfo(
+            title = info.title,
+            value = info.value
+        )
+    }
 
 }
 
