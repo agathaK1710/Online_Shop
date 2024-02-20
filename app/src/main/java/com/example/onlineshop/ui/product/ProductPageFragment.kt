@@ -12,13 +12,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.onlineshop.R
-import com.example.onlineshop.databinding.FragmentNavigationBinding
 import com.example.onlineshop.databinding.FragmentProductPageBinding
 import com.example.onlineshop.ui.OnlineShopApp
 import com.example.onlineshop.ui.ViewModelFactory
 import com.example.onlineshop.ui.catalog.CatalogViewModel
 import com.example.onlineshop.ui.catalog.recyclerView.ProductCard
 import com.example.onlineshop.ui.catalog.recyclerView.ViewPagerAdapter
+import com.example.onlineshop.ui.utils.Ending
 import javax.inject.Inject
 
 class ProductPageFragment : Fragment() {

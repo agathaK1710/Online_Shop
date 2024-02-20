@@ -22,6 +22,14 @@ class ShopRepositoryImpl @Inject constructor(
         userDao.insertUser(userMapper.mapUserToUserEntity(user))
     }
 
+    override suspend fun getUsers(): List<User> {
+        return userMapper.mapUserEntityListToUserList(userDao.getUsers())
+    }
+
+    override suspend fun deleteUsers() {
+       userDao.clearUserTable()
+    }
+
     override suspend fun getUserCount(): Int {
         return userDao.getUserCount()
     }
@@ -40,5 +48,13 @@ class ShopRepositoryImpl @Inject constructor(
 
     override suspend fun checkIfProductIsFavourite(productId: String): String? {
         return productDao.checkIfProductIsFavourite(productId)
+    }
+
+    override suspend fun getFavProducts(): List<FavouriteProduct> {
+       return productMapper.mapFavProductEntityListToFavProductList(productDao.getAllFavProducts())
+    }
+
+    override suspend fun deleteFavProducts() {
+        productDao.clearProductsTable()
     }
 }

@@ -16,4 +16,8 @@ class UserMapper @Inject constructor(){
         surname = user.surname,
         phoneNum = user.phoneNumber
     )
+
+    fun mapUserEntityListToUserList(userEntityList: List<UserEntity>) = userEntityList.map {
+        mapUserEntityToUser(it)
+    }
 }

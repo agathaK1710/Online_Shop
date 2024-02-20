@@ -37,6 +37,15 @@
     <string name="more">Подробнее</string>
     <string name="available">Доступно для заказа</string>
     <string name="description">Описание</string>
+    <string name="profile">Личный кабинет</string>
+    <string name="phone_hint">+79938774402</string>
+    <string name="mask_phone_profile">## ### ###-##-##</string>
+    <string name="favourites">Избранное</string>
+    <string name="shops">Магазины</string>
+    <string name="feedback">Обратная связь</string>
+    <string name="offers">Оферта</string>
+    <string name="purchase_return">Возврат товара</string>
+    <string name="logout">Выйти</string>
     <string-array name="sort_array">
         <item>По популярности</item>
         <item>По уменьшению цены</item>

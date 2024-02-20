@@ -1,4 +1,4 @@
-package com.example.onlineshop.ui.product
+package com.example.onlineshop.ui.utils
 
 enum class Ending {
     FIRST_TYPE, SECOND_TYPE, THIRD_TYPE;

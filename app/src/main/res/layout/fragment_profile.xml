@@ -1,13 +1,299 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginHorizontal="16dp"
     tools:context=".ui.profile.ProfileFragment">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:id="@+id/profileTitle"
+        style="@style/TitleStyle"
+        android:text="@string/profile"
+        tools:ignore="MissingConstraints" />
 
-</FrameLayout>
+    <View
+        android:id="@+id/cardName"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:layout_marginTop="34dp"
+        android:background="@drawable/rounded_8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileTitle" />
+
+    <ImageView
+        android:id="@+id/profileIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/profile"
+        app:layout_constraintBottom_toBottomOf="@+id/cardName"
+        app:layout_constraintStart_toStartOf="@+id/cardName"
+        app:layout_constraintTop_toTopOf="@+id/cardName" />
+
+    <TextView
+        android:id="@+id/credentials"
+        style="@style/ProfileStyle"
+        android:layout_marginTop="6.5dp"
+        app:layout_constraintStart_toEndOf="@+id/profileIcon"
+        app:layout_constraintTop_toTopOf="@+id/cardName"
+        tools:text="Марина Иванова" />
+
+    <TextView
+        android:id="@+id/phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="6.5dp"
+        android:background="@color/light_grey"
+        android:enabled="false"
+        android:fontFamily="@font/sf_pro_display"
+        android:hint="@string/phone_hint"
+        android:textColor="@color/middle_grey"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/cardName"
+        app:layout_constraintStart_toEndOf="@+id/profileIcon"
+        app:layout_constraintTop_toBottomOf="@+id/credentials" />
+
+    <ImageView
+        android:id="@+id/iconLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:src="@drawable/small_button"
+        app:layout_constraintBottom_toBottomOf="@+id/cardName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/cardName" />
+
+    <!--    fav-->
+    <View
+        android:id="@+id/cardFavourites"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/rounded_8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardName" />
+
+    <ImageView
+        android:id="@+id/heartIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:src="@drawable/heart_transparent"
+        app:layout_constraintBottom_toBottomOf="@+id/cardFavourites"
+        app:layout_constraintStart_toStartOf="@+id/cardFavourites"
+        app:layout_constraintTop_toTopOf="@+id/cardFavourites" />
+
+    <TextView
+        android:id="@+id/favouritesTitle"
+        style="@style/ProfileStyle"
+        android:layout_marginTop="6.5dp"
+        android:text="@string/favourites"
+        app:layout_constraintStart_toEndOf="@+id/heartIcon"
+        app:layout_constraintTop_toTopOf="@+id/cardFavourites" />
+
+    <TextView
+        android:id="@+id/favourites"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="7.5dp"
+        android:fontFamily="@font/sf_pro_display"
+        android:textColor="@color/middle_grey"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/cardFavourites"
+        app:layout_constraintStart_toEndOf="@+id/heartIcon"
+        tools:text="1 товар" />
+
+    <ImageView
+        android:id="@+id/rightArrow_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="22dp"
+        android:src="@drawable/right_arrow"
+        app:layout_constraintBottom_toBottomOf="@+id/cardFavourites"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/cardFavourites" />
+
+    <!--    shops-->
+    <View
+        android:id="@+id/cardShops"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardFavourites" />
+
+    <ImageView
+        android:id="@+id/shopIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:src="@drawable/shop"
+        app:layout_constraintBottom_toBottomOf="@+id/cardShops"
+        app:layout_constraintStart_toStartOf="@+id/cardShops"
+        app:layout_constraintTop_toTopOf="@+id/cardShops" />
+
+    <TextView
+        android:id="@+id/shops"
+        style="@style/ProfileStyle"
+        android:text="@string/shops"
+        app:layout_constraintBottom_toBottomOf="@+id/cardShops"
+        app:layout_constraintStart_toEndOf="@+id/heartIcon"
+        app:layout_constraintTop_toTopOf="@+id/cardShops" />
+
+    <ImageView
+        android:id="@+id/rightArrow_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="22dp"
+        android:src="@drawable/right_arrow"
+        app:layout_constraintBottom_toBottomOf="@+id/cardShops"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/cardShops" />
+
+    <!--    feedback-->
+
+    <View
+        android:id="@+id/cardFeedback"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardShops" />
+
+    <ImageView
+        android:id="@+id/feedbackIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:src="@drawable/feedback"
+        app:layout_constraintBottom_toBottomOf="@+id/cardFeedback"
+        app:layout_constraintStart_toStartOf="@+id/cardFeedback"
+        app:layout_constraintTop_toTopOf="@+id/cardFeedback" />
+
+    <TextView
+        android:id="@+id/feedback"
+        style="@style/ProfileStyle"
+        android:text="@string/feedback"
+        app:layout_constraintBottom_toBottomOf="@+id/cardFeedback"
+        app:layout_constraintStart_toEndOf="@+id/heartIcon"
+        app:layout_constraintTop_toTopOf="@+id/cardFeedback" />
+
+    <ImageView
+        android:id="@+id/rightArrow_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="22dp"
+        android:src="@drawable/right_arrow"
+        app:layout_constraintBottom_toBottomOf="@+id/cardFeedback"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/cardFeedback" />
+
+    <!--    offers-->
+
+    <View
+        android:id="@+id/cardOffers"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardFeedback" />
+
+    <ImageView
+        android:id="@+id/offersIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:src="@drawable/offers"
+        app:layout_constraintBottom_toBottomOf="@+id/cardOffers"
+        app:layout_constraintStart_toStartOf="@+id/cardOffers"
+        app:layout_constraintTop_toTopOf="@+id/cardOffers" />
+
+    <TextView
+        android:id="@+id/offers"
+        style="@style/ProfileStyle"
+        android:text="@string/offers"
+        app:layout_constraintBottom_toBottomOf="@+id/cardOffers"
+        app:layout_constraintStart_toEndOf="@+id/heartIcon"
+        app:layout_constraintTop_toTopOf="@+id/cardOffers" />
+
+    <ImageView
+        android:id="@+id/rightArrow_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="22dp"
+        android:src="@drawable/right_arrow"
+        app:layout_constraintBottom_toBottomOf="@+id/cardOffers"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/cardOffers" />
+
+    <!--    purchase-->
+
+    <View
+        android:id="@+id/cardPurchase"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/rounded_8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardFeedback" />
+
+    <ImageView
+        android:id="@+id/purchaseIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:src="@drawable/return_purchase"
+        app:layout_constraintBottom_toBottomOf="@+id/cardPurchase"
+        app:layout_constraintStart_toStartOf="@+id/cardPurchase"
+        app:layout_constraintTop_toTopOf="@+id/cardPurchase" />
+
+    <TextView
+        android:id="@+id/purchase"
+        style="@style/ProfileStyle"
+        android:text="@string/purchase_return"
+        app:layout_constraintBottom_toBottomOf="@+id/cardPurchase"
+        app:layout_constraintStart_toEndOf="@+id/heartIcon"
+        app:layout_constraintTop_toTopOf="@+id/cardPurchase" />
+
+    <ImageView
+        android:id="@+id/rightArrow_5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="22dp"
+        android:src="@drawable/right_arrow"
+        app:layout_constraintBottom_toBottomOf="@+id/cardPurchase"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/cardPurchase" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/logoutButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/rounded_8dp"
+        android:fontFamily="@font/sf_pro_display"
+        android:text="@string/logout"
+        android:textAllCaps="false"
+        android:stateListAnimator="@null"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

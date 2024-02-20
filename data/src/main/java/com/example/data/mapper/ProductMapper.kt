@@ -16,8 +16,17 @@ import javax.inject.Inject
 
 class ProductMapper @Inject constructor() {
 
+    fun mapFavProductEntityListToFavProductList(favProductEntityList: List<FavouriteEntity>) =
+        favProductEntityList.map {
+            mapFavouriteEntityToProduct(it)
+        }
+
     fun mapFavouriteProductToEntity(favouriteProduct: FavouriteProduct) = FavouriteEntity(
         id = favouriteProduct.id
+    )
+
+    fun mapFavouriteEntityToProduct(favouriteEntity: FavouriteEntity) = FavouriteProduct(
+        id = favouriteEntity.id
     )
 
     fun mapProductListDtoToProductList(productListDto: ProductListDto) = ProductList(
