@@ -1,11 +1,16 @@
 package com.example.onlineshop.ui.catalog.recyclerView
 
 import android.os.Parcelable
+import com.example.onlineshop.ui.product.ProductInfo
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class ProductCard(
     val id: String,
+    val available: Int,
+    val description: String,
+    val info: List<ProductInfo>,
+    val ingredients: String,
     val images: List<Int>,
     val oldPrice: String,
     val newPrice: String,

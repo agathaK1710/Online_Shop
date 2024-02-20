@@ -35,6 +35,8 @@
     <string name="composition">Состав</string>
     <string name="add_to_cart">Добавить в корзину</string>
     <string name="more">Подробнее</string>
+    <string name="available">Доступно для заказа</string>
+    <string name="description">Описание</string>
     <string-array name="sort_array">
         <item>По популярности</item>
         <item>По уменьшению цены</item>

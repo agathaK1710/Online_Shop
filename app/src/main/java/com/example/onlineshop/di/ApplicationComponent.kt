@@ -9,6 +9,7 @@ import com.example.onlineshop.ui.nav.NavigationFragment
 import com.example.onlineshop.ui.profile.ProfileFragment
 import com.example.onlineshop.ui.sale.SaleFragment
 import com.example.onlineshop.ui.catalog.CatalogFragment
+import com.example.onlineshop.ui.product.ProductPageFragment
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -26,6 +27,7 @@ interface ApplicationComponent {
     fun inject(fragment: ProfileFragment)
     fun inject(fragment: SaleFragment)
     fun inject(fragment: CatalogFragment)
+    fun inject(fragment: ProductPageFragment)
 
     @Component.Factory
     interface ApplicationFactory {
